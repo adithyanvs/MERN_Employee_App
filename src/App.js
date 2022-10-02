@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Register from './components/Register';
 import {Routes,Route} from "react-router-dom"
+import Editform from './components/Editform';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route exact path="/" element ={<Home/>} />
         <Route exact path="/register" element={<Register/>} />
+        <Route exact path="/edit/:id" element={<Editform/>} />
       </Routes>
      
     </>

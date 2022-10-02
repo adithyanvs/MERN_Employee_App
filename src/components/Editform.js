@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Register = () => {
-    
+
+
+const Editform = () => {
     const [inpval,setINP] =useState({
         name:"",
         age:"",
@@ -20,9 +21,8 @@ const Register = () => {
             }
         })
     }
-    
-    return (
-        <div className='container' >
+  return (
+    <div className='container' >
             <NavLink to="/" > Home  </NavLink>
             <div className="row">
                 <div className="col-2"></div>
@@ -51,7 +51,8 @@ const Register = () => {
 
 
         </div>
-    )
+
+  )
 }
 
-export default Register
+export default Editform
