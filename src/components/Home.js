@@ -1,4 +1,7 @@
 import React from "react";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import CreateIcon from '@mui/icons-material/Create';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const Home = () => {
   return (
@@ -25,9 +28,9 @@ const Home = () => {
       <td>Otto</td>
       <td>@mdo</td>
       <td className="d-flex justify-content-between " >
-      <button className="btn btn-success" ><i class="fa-solid fa-eye"></i></button>
-       <button className="btn btn-primary" ><i class="fa-solid fa-pen"></i></button> 
-      <button className="btn btn-danger" ><i class="fa-solid fa-trash"></i></button>
+      <button className="btn btn-success" ><RemoveRedEyeIcon/></button>
+       <button className="btn btn-primary" ><CreateIcon/></button> 
+      <button className="btn btn-danger" ><DeleteOutlineIcon/></button>
       </td>
     </tr>
     
