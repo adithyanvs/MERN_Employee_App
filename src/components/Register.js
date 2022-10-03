@@ -20,6 +20,34 @@ const Register = () => {
             }
         })
     }
+
+    const addinpdata = async(e) =>{
+        e.preventDefault();
+
+        const {name,age,profession} = inpval
+
+        const res = await fetch("/register",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                name,age,profession
+            })
+        })
+
+        const data = await res.json()
+        console.log(data);
+
+        if(res.status === 404 || !data){
+            alert("error")
+            console.log("error");
+        }else{
+            alert("Employee data successfully added")
+            console.log("data added");
+        }
+
+    }
     
     return (
         <div className='container' >
@@ -34,7 +62,7 @@ const Register = () => {
                         </div>
                         <div class="mb-3 col-lg-8 col-md-8 col-12 ">
                             <label for="exampleInputPassword1" class="form-label">Age</label>
-                            <input type="number" value={inpval.age} onChange={setdata} name='age' class="form-control" id="exampleInputPassword1" />
+                            <input type="text" value={inpval.age} onChange={setdata} name='age' class="form-control" id="exampleInputPassword1" />
                         </div>
                         <div class="mb-3 col-lg-8 col-md-8 col-12 ">
                             <label for="exampleInputPassword1" class="form-label">Profession</label>
@@ -42,7 +70,7 @@ const Register = () => {
                         </div>
                       
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" onClick={addinpdata} class="btn btn-primary">Submit</button>
 
                     </form>
                 </div>
