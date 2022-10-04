@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { adddata } from './context/ContextProvider'
 
 const Register = () => {
+
+    const {udata,setUdata} = useContext(adddata)
+
+    const navigate = useNavigate("")
     
     const [inpval,setINP] =useState({
         name:"",
@@ -39,11 +44,13 @@ const Register = () => {
         const data = await res.json()
         console.log(data);
 
-        if(res.status === 404 || !data){
+        if(res.status === 422 || !data){
             alert("error")
             console.log("error");
         }else{
-            alert("Employee data successfully added")
+            // alert("Employee data successfully added")
+            navigate('/')
+            setUdata(data)
             console.log("data added");
         }
 
