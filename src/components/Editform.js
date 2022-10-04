@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams,  } from "react-router-dom";
+import { updatedata } from "./context/ContextProvider"
 
 const Editform = () => {
   // const [getuserdata, setUserdata] = useState([]);
   // console.log(getuserdata);
+  const {updata,setUpdata} = useContext(updatedata)
 
   const navigate = useNavigate("")
 
@@ -14,7 +16,7 @@ const Editform = () => {
   });
 
   const setdata = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     const { name, value } = e.target;
     setINP((preval) => {
       return {
@@ -25,10 +27,10 @@ const Editform = () => {
   };
 
   const { id } = useParams("");
-  console.log(id);
+  // console.log(id);
 
   const getdata = async (e) => {
-    // e.preventDefault();
+   
 
     const res = await fetch(`/getuser/${id}`, {
       method: "GET",
@@ -38,13 +40,13 @@ const Editform = () => {
     });
 
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
 
     if (res.status === 422 || !data) {
       console.log("error");
     } else {
       setINP(data);
-      console.log("get data");
+      // console.log("get data");
     }
   };
   useEffect(() => {
@@ -67,13 +69,14 @@ const Editform = () => {
     });
 
     const data2 = await res2.json()
-    console.log(data2);
+    // console.log(data2);
 
     if(res2.status === 42 || !data2){
         alert("fill the data")
     }else{
-        alert("Data updated")
+        // alert("Data updated")
         navigate('/')
+        setUpdata(data2)
     }
 
   }

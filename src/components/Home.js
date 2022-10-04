@@ -3,13 +3,18 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import CreateIcon from "@mui/icons-material/Create";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { NavLink } from "react-router-dom";
-import { adddata } from "./context/ContextProvider";
+import { adddata, updatedata, deldata } from "./context/ContextProvider";
+// import { updatedata } from "./context/ContextProvider"
+// import{ deldata } from "./context/ContextProvider"
 
 const Home = () => {
   const [getuserdata, setUserdata] = useState([]);
-  console.log(getuserdata);
+  // console.log(getuserdata);
 
-  const {udata,setUdata} = useContext(adddata)
+  const {udata,setUdata} = useContext(adddata)//for create
+  const {updata,setUpdata} = useContext(updatedata)//for update
+  const {dltdata,setDltdata} = useContext(deldata)//for update
+
 
   const getdata = async (e) => {
     // e.preventDefault();
@@ -22,13 +27,13 @@ const Home = () => {
     });
 
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
 
     if (res.status === 422 || !data) {
       console.log("error");
     } else {
       setUserdata(data);
-      console.log("get data");
+      // console.log("get data");
     }
   };
 
@@ -45,12 +50,13 @@ const Home = () => {
       })
 
       const deletedata = await res2.json()
-      console.log(deletedata);
+      // console.log(deletedata);
 
       if(res2.status === 422 || !deletedata){
         console.log("error");
       }else{
-        console.log("User deleted successfully");
+        // console.log("User deleted successfully");
+        setDltdata(deletedata)
         getdata()
       }
 
@@ -63,11 +69,29 @@ const Home = () => {
          udata?
          <>
          <div class="alert alert-success alert-dismissible fade show" role="alert">
-         <strong>Success!</strong> User added successfully!
+         <strong>{udata.name}</strong> added successfully!
          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
          </div>
          </>:""
-}
+      }
+      {
+         updata?
+         <>
+         <div class="alert alert-success alert-dismissible fade show" role="alert">
+         <strong>{updata.name}</strong> updated successfully!
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+         </>:""
+      }
+      {
+        dltdata?
+         <>
+         <div class="alert alert-danger alert-dismissible fade show" role="alert">
+         <strong>{dltdata.name}</strong> deleted successfully!
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>
+         </>:""
+      }
 
 
     

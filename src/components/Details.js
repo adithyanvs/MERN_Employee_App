@@ -10,10 +10,10 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom';
 const Details = () => {
 
   const [getuserdata, setUserdata] = useState([]);
-  console.log(getuserdata);
+  // console.log(getuserdata);
 
   const {id} = useParams("")
-  console.log(id);
+  // console.log(id);
 
   const navigate = useNavigate("")
 
@@ -28,13 +28,13 @@ const Details = () => {
     });
 
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
 
     if (res.status === 422 || !data) {
       console.log("error");
     } else {
       setUserdata(data);
-      console.log("get data");
+      // console.log("get data");
     }
   }
 
@@ -51,12 +51,12 @@ const Details = () => {
     })
 
     const deletedata = await res2.json()
-    console.log(deletedata);
+    // console.log(deletedata);
 
     if(res2.status === 422 || !deletedata){
       console.log("error");
     }else{
-      console.log("User deleted successfully");
+      // console.log("User deleted successfully");
       alert("Deleted successfully")
       navigate('/')
     }
